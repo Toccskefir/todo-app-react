@@ -1,25 +1,32 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useState} from 'react';
 import './App.css';
+import TodoList from "./TodoList";
+import DarkModeContext from "./DarkModeContext";
 
 function App() {
+    const [darkMode, setDarkMode] = useState(false);
+    const [todos, setTodos] = useState([{
+        id: '1',
+        text: 'asdad',
+    }, {
+        id: '2',
+        text: 'sdsffdsf',
+    }]);
+
+    function handleChange() {
+        setDarkMode(mode => !mode);
+    }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <DarkModeContext.Provider value={darkMode}>
+          <div className={darkMode ? 'dark' : 'light'}>
+              <label>
+                  {darkMode ? 'Change to Light Mode' : 'Change to Dark Mode'}
+                  <input type="checkbox" checked={darkMode} onChange={handleChange}/>
+              </label>
+              <TodoList todos={todos}/>
+          </div>
+      </DarkModeContext.Provider>
   );
 }
 
