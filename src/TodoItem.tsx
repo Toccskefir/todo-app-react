@@ -7,7 +7,7 @@ interface TodoItemProps {
 }
 
 function TodoItem(props: TodoItemProps) {
-    const darkMode = useContext(DarkModeContext);
+    const {darkMode} = useContext(DarkModeContext);
     return (
         <li style={{
             color: darkMode ? 'black' : 'white',

@@ -1,10 +1,10 @@
 import React, {useState} from 'react';
 import './App.css';
 import TodoList from "./TodoList";
-import DarkModeContext from "./DarkModeContext";
+import ToolBar from "./ToolBar";
+import DarkModeProvider from "./DarkModeProvider";
 
 function App() {
-    const [darkMode, setDarkMode] = useState(false);
     const [todos, setTodos] = useState([{
         id: '1',
         text: 'asdad',
@@ -13,20 +13,11 @@ function App() {
         text: 'sdsffdsf',
     }]);
 
-    function handleChange() {
-        setDarkMode(mode => !mode);
-    }
-
   return (
-      <DarkModeContext.Provider value={darkMode}>
-          <div className={darkMode ? 'dark' : 'light'}>
-              <label>
-                  {darkMode ? 'Change to Light Mode' : 'Change to Dark Mode'}
-                  <input type="checkbox" checked={darkMode} onChange={handleChange}/>
-              </label>
-              <TodoList todos={todos}/>
-          </div>
-      </DarkModeContext.Provider>
+      <DarkModeProvider>
+          <ToolBar />
+          <TodoList todos={todos}/>
+      </DarkModeProvider>
   );
 }
 
