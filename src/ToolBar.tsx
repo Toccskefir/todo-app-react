@@ -5,7 +5,7 @@ function ToolBar() {
     const {darkMode, setDarkMode} = useContext(darkModeContext);
 
     return (
-        <div className={darkMode ? 'dark' : 'light'}>
+        <div style={{height: '100px' }} className={darkMode ? 'dark' : 'light'}>
             <label>
                 {darkMode ? 'Change to Light Mode' : 'Change to Dark Mode'}
                 <input type="checkbox" checked={darkMode} onChange={(e) => {

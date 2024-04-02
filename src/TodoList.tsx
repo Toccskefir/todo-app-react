@@ -1,17 +1,26 @@
 import Todo from "./todoInterface";
-import TodoItem from "./TodoItem";
+import Card from "./Card";
+import {useContext} from "react";
+import DarkModeContext from "./DarkModeContext";
 
 interface TodoListProps {
     todos: Todo[];
 }
 
 function TodoList(props: TodoListProps) {
+    const {darkMode} = useContext(DarkModeContext);
+
     return(
-        <ul>
+        <div style={{ display: 'flex', gap: 16}} className={darkMode ? 'dark' : 'light'}>
             {props.todos.map((todo) => (
-                <TodoItem key={todo.id} todo={todo}/>
+                <Card key={todo.id} onClick={() => alert('Hello')}>
+                    {todo.text}
+                </Card>
             ))}
-        </ul>
+            <Card className="card--red">
+                Piros tojás
+            </Card>
+        </div>
     );
 }
 
