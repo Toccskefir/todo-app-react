@@ -3,6 +3,7 @@ import './App.css';
 import TodoList from "./TodoList";
 import ToolBar from "./ToolBar";
 import DarkModeProvider from "./DarkModeProvider";
+import SplitPanel from "./SplitPanel";
 
 function App() {
     const [todos, setTodos] = useState([{
@@ -16,7 +17,7 @@ function App() {
   return (
       <DarkModeProvider>
           <ToolBar />
-          <TodoList todos={todos}/>
+          <SplitPanel left={<h1>Todo app</h1>} right={<TodoList todos={todos}/>}/>
       </DarkModeProvider>
   );
 }
